@@ -1,0 +1,20 @@
+> Name<-c("Jeb","Donald","Ted","Marco","Carly","Hillary","Berine")
+> ABC political poll results<- c(4,62,51,21,2,14,15)
+Error: unexpected symbol in "ABC political"
+> ABCpoliticalpollresults<- c(4,62,51,21,2,14,15)
+> CBSpoliticalpollresults<- c(12,75,43,19,1,21,19)
+> candidates.df<- data.frame(Name,ABCpoliticalpollresults,CBSpoliticalpollresults)
+> mean(candidates.df[,2:3]
++ )
+[1] NA
+Warning message:
+In mean.default(candidates.df[, 2:3]) :
+  argument is not numeric or logical: returning NA
+> colmeans(candidates.df[2:3])
+Error in colmeans(candidates.df[2:3]) : 
+  could not find function "colmeans"
+> colMeans(candidates.df[2:3])
+ABCpoliticalpollresults CBSpoliticalpollresults 
+               24.14286                27.14286 
+> rowMeans(candidates.df[2:3])
+[1]  8.0 68.5 47.0 20.0  1.5 17.5 17.0
