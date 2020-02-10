@@ -1,0 +1,37 @@
+> Patient1<-c("0.6","103","bad","low","low")
+> Patient2<-c("0.3","87","bad","low","high") 
+> Patient3<-c("0.4","32","bad","high","low")
+> Patient4<-c("0.4","42","bad","high","high")
+> Patient5<-c("0.2","59","good","low","low")
+> Patient6<-c("0.6","109","good","low","high")
+> Patient7<-c("0.3","78","good","high","low")
+> Patient8<-c("0.4","205","good","high","high")
+> Patient9<-c("0.9","135",”NA","high","high")
+Error: unexpected input in "Patient9<-c("0.9","135",”"
+> Patient9<-c("0.9","135","NA","high","high")
+> Patient10<-c("0.2","176",”bad","high","high")
+Error: unexpected input in "Patient10<-c("0.2","176",”"
+> Patient10<-c("0.2","176","bad","high","high")
+> Patients<-data.frame(Patient1,Patient2,Patient3,Patient4,Patient5,Patient6,Patient7,Patient8,Patient9,Patient10)
+> frequency<- sapply(sapply(Patients[1,],as.character),as.numeric)
+> bloodp<- sapply(sapply(Patients[2,],as.character),as.numeric)
+> first<- ifelse(Patients[3,]== "bad",1,ifelse(Patients[3,]=="good",0,NA))[1,]
+> second<- ifelse(Patients[4,]=="high",1,ifelse(Patients[4,]=="low",0,NA
++ ))[1,]
+> final<- ifelse(Patients[5,]=="high",1,ifelse(Patients[5,]=="low",0,NA))[1,]
+> Patientsnum<-matrix(c(frequency,bloodp,first,second,final
++ ),ncol=10,byrow=T)
+> colnames(Patientsnum)<-colnames(Patients)
+> rownames(Patientsnum)<-c("Frequency", "BP", "First", "Second", "Final")
+> boxplot(Patientsnum[3:4,],main="Dr Assessments vs ER Decision", ylab="Assessments", yaxt='n', las=2, col="blue")
+> axis(2,labels=c("Good","Bad"), at 0:1, las=1)
+Error: unexpected numeric constant in "axis(2,labels=c("Good","Bad"), at 0"
+> axis(2,labels=c("Good","Bad"), at=0:1, las=1)
+> points(Patientsnum[5,], col="red", pch=19)
+> par(new=T)
+> plot(Patientsnum[2,], axes=F, col="gray",pch=17, xlab="", ylab="")
+> axis(4)
+> mtext("Blood Pressure", 4)
+> legend("bottomleft", legend=c("Doctors avg", "ER decision", "Blood Pressure"), col=c("black", "green", "red"), fill=c("black", "green", "red"), cex=.70)
+> legend("bottomleft", legend=c("Doctors avg", "ER decision", "Blood Pressure"), col=c("blue", "red", "gray"), fill=c("blue", "red", "gray"), cex=.75)
+> hist(Patientsnum[1,], col="blue", main="Patient Visit Freq.", xlab="Visit Freq. in Past 12 Months", ylab="Patients")
