@@ -1,0 +1,47 @@
+#Generic functions that work with the "esoph" dataset
+print(esoph)
+summary(esoph)
+plot(esoph$Age)
+
+#Generic function that doesn't work with esoph
+mean(esoph)
+
+#S3 class for dataset esoph
+esoph_s3 = function(a,l,t) {
+	esoph = list(Age=a,Alcohol=l,Tobacco=t)
+	class(esoph) <- "esoph_s3"
+	esoph
+}
+
+#Define print function for esoph_s3
+print.esoph_s3 <- function(esoph) {
+	cat("Age: ", esoph$Age, "\n")
+	cat("Alcohol: ", esoph$Alcohol, "\n")
+	cat("Tobacco: ", esoph$Tobacco, "\n")
+}
+
+#Create esoph_s3 objects for each row in dataset esoph
+cat("Dataset esoph as S3 objects:\n")
+apply(esoph, 1, function(x) esoph_s3(x[1],x[2],x[3]))
+
+
+#S4 class created for dataset esoph
+setClass("esoph_s4",
+	representation(
+		Age="numeric",
+		Alcohol="numeric",
+		Tobacco="numeric")
+)
+
+#Define show function for esoph_s4
+setMethod("show", "esoph_s4",
+	function(object) {
+		cat("Age: ", object@Age, "\n")
+		cat("Alcohol: ", object@Alcohol, "\n")
+		cat("Tobacco: ", object@Tobacco, "\n")
+	}
+)
+
+#Create esoph_s4 objects for each row in dataset trees
+cat("Dataset esoph as S4 objects:\n")
+apply(esoph, 1, function(x) new("esoph", Girth=x[1], Height=x[2], Volume=x[3]))
