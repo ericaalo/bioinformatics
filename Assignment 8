@@ -1,0 +1,26 @@
+> install.packages("plyr")
+Installing package into ‘C:/Users/Erica/OneDrive/Documents/R/win-library/3.6’
+(as ‘lib’ is unspecified)
+--- Please select a CRAN mirror for use in this session ---
+
+  There is a binary version available but the source version is later:
+     binary source needs_compilation
+plyr  1.8.5  1.8.6              TRUE
+
+  Binaries will be installed
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/3.6/plyr_1.8.5.zip'
+Content type 'application/zip' length 1304574 bytes (1.2 MB)
+downloaded 1.2 MB
+
+package ‘plyr’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+        C:\Users\Erica\AppData\Local\Temp\RtmpEj3WnA\downloaded_packages
+> library(plyr)
+Warning message:
+package ‘plyr’ was built under R version 3.6.3 
+> students<-read.table(file.choose(),header=T,sep=",")
+> students_gendered_mean<-ddply(students, "Sex", transform, average_grade=mean(Grade))
+> write.table(students_gendered_mean, "Students_Gendered_Mean")
+> i_students<-subset(students, grepl("i", students$Name, ignore.case=T))
+> write.table(i_students, "DataSet_Subset.csv", sep=",")
