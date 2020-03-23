@@ -1,0 +1,20 @@
+install.packages("lattice")
+install.packages("ggplot2")
+require(lattice)
+require(ggplot2)
+citypop.csv<-read.csv("C:/Users/Erica/OneDrive/Desktop/R/city.csv",header=TRUE)[,2:4]
+citypop.csv
+str(citypop.csv)
+citypop<-citypop.csv[,-1]
+citypop$u
+pop1920<-citypop$u
+pop1930<-citypop$x
+#Basic Graphics
+plot(pop1920, type = "o", col="blue", ylim=c(0,260), xlab = "City", ylab = "Population(Thousands)")
+lines(pop1930, type = "o",pch=22 ,col="red")
+title(main="US City Populations 1920 to 1930")
+#Lattice
+xyplot(pop1930~pop1920)
+#ggplot2
+qplot(,pop1920, ylab="Population(Thousands)", xlab="City", main="US City Population 1920")
+qplot(,pop1930, ylab="Population(Thousands)", xlab="City", main="US City Population 1930")
