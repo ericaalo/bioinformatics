@@ -1,0 +1,37 @@
+---
+title: "Rmarkdown USArrests"
+author: "Eric Aalo"
+date: "4/12/2020"
+output: html_document
+---
+Rmarkdown document for USArrests dataset
+
+First, we load USArrests dataset and look at structure
+
+```{r}
+library(datasets)
+data("USArrests")
+?USArrests
+str(USArrests)
+summary(USArrests)
+```
+
+Next, create xy plots for US Arrests for different crimes for each state
+
+```{r}
+plot(USArrests$Murder)
+plot(USArrests$Assault)
+plot(USArrests$UrbanPop)
+plot(USArrests$Rape)
+```
+
+Lastly, ran a regression for Urban population on different crimes
+
+```{r}
+fitm<-lm(USArrests$UrbanPop~USArrests$Murder, data=USArrests)
+fita<-lm(USArrests$UrbanPop~USArrests$Assault, data=USArrests)
+fitr<-lm(USArrests$UrbanPop~USArrests$Rape, data=USArrests)
+summary(fitm)
+summary(fita)
+summary(fitr)
+```
